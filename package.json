@@ -1,0 +1,17 @@
+{
+  "name": "lametric-yle",
+  "version": "1.0.0",
+  "description": "this is the description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "microcule index.js"
+  },
+  "author": "rauli",
+  "dependencies": {
+    "microcule": "*",
+    "parse-rss": "^1.0.3",
+    "rss-parser": "^2.10.8"
+  },
+  "license": "MIT"
+}
