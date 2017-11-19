@@ -54,7 +54,7 @@ module.exports = hook => {
         // And convert them into LaMetric format.
         .map((entry, index) => ({
           index,
-          text: `${index + 1}: ${entry.title}`,
+          text: `${index + 1}. ${entry.title}`,
           icon: 'yle'
         }))
     });
