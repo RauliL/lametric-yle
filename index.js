@@ -52,8 +52,9 @@ module.exports = hook => {
         // Display only 5 or user defined amount of latest entries.
         .splice(0, hook.params.max ? parseInt(hook.params.max) : 5)
         // And convert them into LaMetric format.
-        .map(entry => ({
-          text: entry.title,
+        .map((entry, index) => ({
+          index,
+          text: `${index + 1}: ${entry.title}`,
           icon: 'yle'
         }))
     });
