@@ -1,5 +1,4 @@
 const parser = require('parse-rss');
-const url = 'https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET';
 
 const feeds = {
   'Pääuutiset': 'https://feeds.yle.fi/uutiset/v1/majorHeadlines/YLE_UUTISET.rss',
