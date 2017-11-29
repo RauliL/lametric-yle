@@ -8,3 +8,8 @@ patch:
         patched: '2017-11-29T09:54:32.712Z'
     - microcule > resource-http > view > marked:
         patched: '2017-11-29T09:54:32.712Z'
+  'npm:marked:20170112':
+    - microcule > view > marked:
+        patched: '2017-11-29T20:43:47.837Z'
+    - microcule > resource-http > view > marked:
+        patched: '2017-11-29T20:43:47.837Z'
