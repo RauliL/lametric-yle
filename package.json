@@ -8,10 +8,7 @@
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/RauliL/lametric-yle.git"
-  },
+  "repository": "https://github.com/RauliL/lametric-yle.git",
   "bugs": {
     "url": "https://github.com/RauliL/lametric-yle/issues"
   },
