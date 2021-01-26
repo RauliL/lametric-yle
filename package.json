@@ -2,11 +2,18 @@
   "name": "lametric-yle",
   "version": "2.0.2",
   "description": "Backend for LaMetric YLE News app",
-  "main": "index.js",
+  "license": "Unlicense",
+  "main": "./index.js",
+  "keywords": [
+    "lametric",
+    "microservice",
+    "news"
+  ],
+  "bin": {
+    "lametric-yle": "./bin/lametric-yle"
+  },
   "scripts": {
-    "start": "microcule index.js",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "start": "./bin/lametric-yle"
   },
   "repository": "https://github.com/RauliL/lametric-yle.git",
   "bugs": {
@@ -15,11 +22,10 @@
   "homepage": "https://github.com/RauliL/lametric-yle",
   "author": "Rauli Laine <rauli.laine@iki.fi>",
   "dependencies": {
-    "microcule": "*",
+    "debug": "^4.3.1",
+    "express": "^4.17.1",
+    "normalize-port": "^1.0.0",
     "parse-rss": "^1.0.3",
-    "rss-parser": "^2.10.8",
-    "snyk": "^1.52.0"
-  },
-  "license": "Unlicense",
-  "snyk": true
+    "rss-parser": "^2.10.8"
+  }
 }

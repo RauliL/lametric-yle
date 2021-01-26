@@ -1,3 +1,4 @@
+const express = require('express');
 const parser = require('parse-rss');
 
 const feeds = {
@@ -8,14 +9,15 @@ const feeds = {
 };
 const defaultFeed = 'Tuoreimmat uutiset';
 
-module.exports = hook => {
-  const url = feeds[hook.params.feed || defaultFeed];
+const app = express();
 
-  // Specify response content type and character set.
-  hook.res.setHeader('Content-Type', 'application/json; charset=utf-8');
+module.exports = app;
+
+app.get('/', (req, res) => {
+  const url = feeds[req.query.feed || defaultFeed];
 
   if (!url) {
-    hook.res.json({
+    res.send({
       frames: [{
         text: 'Invalid feed',
         icon: 'stop'
@@ -28,19 +30,17 @@ module.exports = hook => {
   parser(url, (err, rss) => {
     // Was it unsuccessful?
     if (err) {
-      hook.res.json({
-        frames: [
-          {
-            text: 'Unable to retrieve RSS feed',
-            icon: 'stop'
-          }
-        ]
-      });
+      res.send({
+        frames: [{
+          text: 'Unable to retrieve RSS feed',
+          icon: 'stop'
+        }]
+      })
       return;
     }
 
     // Success! Let's process the feed now.
-    hook.res.json({
+    res.send({
       frames: rss
         // Sort entries based on "pubDate" field.
         .sort((entry1, entry2) => {
@@ -50,7 +50,7 @@ module.exports = hook => {
           return time1 > time2 ? -1 : time1 < time2 ? 1 : 0;
         })
         // Display only 5 or user defined amount of latest entries.
-        .splice(0, hook.params.max ? parseInt(hook.params.max) : 5)
+        .splice(0, req.query.max ? parseInt(req.query.max) : 5)
         // And convert them into LaMetric format.
         .map((entry, index) => ({
           index,
@@ -59,4 +59,5 @@ module.exports = hook => {
         }))
     });
   });
-};
+});
+
