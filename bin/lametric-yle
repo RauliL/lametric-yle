@@ -5,6 +5,7 @@ const http = require('http');
 const normalizePort = require('normalize-port');
 
 const server = http.createServer(require('../index'));
+const port = normalizePort(process.env.PORT || '3000');
 
 server.on('error', (err) => {
   if (err.syscall !== 'listen') {
@@ -37,4 +38,4 @@ server.on('listening', () => {
   debug(`Listening on ${bind}`);
 });
 
-server.listen(normalizePort(process.env.PORT || '3000'));
+server.listen(port);
