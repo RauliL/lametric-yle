@@ -13,7 +13,8 @@
     "lametric-yle": "./bin/lametric-yle"
   },
   "scripts": {
-    "start": "./bin/lametric-yle"
+    "start": "./bin/lametric-yle",
+    "start:dev": "nodemon ./bin/lametric-yle"
   },
   "repository": "https://github.com/RauliL/lametric-yle.git",
   "bugs": {
@@ -21,11 +22,16 @@
   },
   "homepage": "https://github.com/RauliL/lametric-yle",
   "author": "Rauli Laine <rauli.laine@iki.fi>",
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "debug": "^4.3.1",
     "express": "^4.17.1",
-    "normalize-port": "^1.0.0",
-    "parse-rss": "^1.0.3",
-    "rss-parser": "^2.10.8"
+    "lametric-rss-formatter": "^1.0.0",
+    "normalize-port": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

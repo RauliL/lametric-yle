@@ -1,5 +1,5 @@
 const express = require('express');
-const parser = require('parse-rss');
+const { format } = require('lametric-rss-formatter');
 
 const feeds = {
   'Pääuutiset': 'https://feeds.yle.fi/uutiset/v1/majorHeadlines/YLE_UUTISET.rss',
@@ -14,7 +14,8 @@ const app = express();
 module.exports = app;
 
 app.get('/', (req, res) => {
-  const url = feeds[req.query.feed || defaultFeed];
+  const { feed, max } = req.query;
+  const url = feeds[feed || defaultFeed];
 
   if (!url) {
     res.send({
@@ -26,38 +27,7 @@ app.get('/', (req, res) => {
     return;
   }
 
-  // Attempt to retrieve and parse the RSS feed.
-  parser(url, (err, rss) => {
-    // Was it unsuccessful?
-    if (err) {
-      res.send({
-        frames: [{
-          text: 'Unable to retrieve RSS feed',
-          icon: 'stop'
-        }]
-      })
-      return;
-    }
-
-    // Success! Let's process the feed now.
-    res.send({
-      frames: rss
-        // Sort entries based on "pubDate" field.
-        .sort((entry1, entry2) => {
-          const time1 = (new Date(entry1.pubDate)).getTime();
-          const time2 = (new Date(entry2.pubDate)).getTime();
-
-          return time1 > time2 ? -1 : time1 < time2 ? 1 : 0;
-        })
-        // Display only 5 or user defined amount of latest entries.
-        .splice(0, req.query.max ? parseInt(req.query.max) : 5)
-        // And convert them into LaMetric format.
-        .map((entry, index) => ({
-          index,
-          text: `${index + 1}. ${entry.title}`,
-          icon: 'yle'
-        }))
-    });
-  });
+  format({ url, max, icon: 'yle' })
+    .then((result) => res.send(result))
+    .catch(() => res.sendStatus(500));
 });
-
