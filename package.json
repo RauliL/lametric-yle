@@ -1,6 +1,6 @@
 {
   "name": "lametric-yle",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Backend for LaMetric YLE News app",
   "license": "Unlicense",
   "type": "module",
@@ -35,7 +35,7 @@
   "homepage": "https://github.com/RauliL/lametric-yle",
   "author": "Rauli Laine <rauli.laine@iki.fi>",
   "engines": {
-    "node": ">=12"
+    "node": ">=24"
   },
   "dependencies": {
     "debug": "^4.4.3",
